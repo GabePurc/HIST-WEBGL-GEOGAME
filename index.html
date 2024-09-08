@@ -30,18 +30,38 @@
         border-radius: 8px;
         width: 80%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
 
       h1 {
         font-size: 2.5em;
         margin: 0;
         font-weight: 600;
+        flex-grow: 1;
+      }
+
+      .fullscreen-message {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-grow: 0;
       }
 
       p {
         font-weight: bold;
-        margin: 10px 0 0;
+        margin: 0;
         color: #ffd700;
+      }
+
+      #unity-fullscreen-button {
+        width: 32px;
+        height: 32px;
+        background: url('fullscreen-icon.png') no-repeat center center;
+        background-size: contain;
+        cursor: pointer;
       }
 
       /* Unity container styling */
@@ -67,7 +87,6 @@
         color: white;
       }
 
-      #unity-fullscreen-button,
       #unity-webgl-logo {
         cursor: pointer;
       }
@@ -99,7 +118,10 @@
     <!-- Header Section -->
     <header>
       <h1>World History Map Quiz Study Game</h1>
-      <p>Make sure to play in full screen for the UI to work properly.</p>
+      <div class="fullscreen-message">
+        <p>Make sure to play in full screen for the UI to work properly.</p>
+        <div id="unity-fullscreen-button" title="Fullscreen"></div>
+      </div>
     </header>
 
     <!-- Unity Game Container -->
@@ -114,7 +136,6 @@
       <div id="unity-warning"> </div>
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
         <div id="unity-build-title">HIST 1112 Map Quiz Study Game</div>
       </div>
     </div>
@@ -143,7 +164,7 @@
         if (type == 'error') div.style = 'background: red; padding: 10px;';
         else {
           if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function () {
+          setTimeout(function() {
             warningBanner.removeChild(div);
             updateBannerVisibility();
           }, 5000);
